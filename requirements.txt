@@ -1,10 +1,3 @@
-llama-cpp-python
-cached_property
-farm-haystack
-fastapi
-uvicorn
-farm-haystack[weaviate]
-pypdf
-torch
-sentence_transformers
-haystack-ai
+requests==2.31.0
+openai==0.28.1
+farm-haystack==1.21.2

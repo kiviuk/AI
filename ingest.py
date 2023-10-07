@@ -1,15 +1,13 @@
 import logging
-from haystack.nodes import EmbeddingRetriever, PreProcessor, AnswerParser
 from haystack.utils import convert_files_to_docs
-from haystack.pipelines import Pipeline
-from haystack.document_stores import WeaviateDocumentStore
+from haystack.nodes import PreProcessor
 print("Imports done")
 
 logging.basicConfig(format="%(levelname)s - %(name)s -  %(message)s", level=logging.WARNING)
 logging.getLogger("haystack").setLevel(logging.INFO)
 print("Logging done")
 
-all_docs = convert_files_to_docs(dir_path="data/")
+all_docs = convert_files_to_docs(dir_path="/data/")
 
 preprocessor = PreProcessor(
     clean_empty_lines=True,
