@@ -1,7 +1,5 @@
 import logging
-from haystack.utils import convert_files_to_docs
-from haystack.nodes import PreProcessor
-from haystack.document_stores import WeaviateDocumentStore
+from haystack.nodes import PreProcessor, PDFToTextConverter
 
 print("Imports done")
 
@@ -9,7 +7,8 @@ logging.basicConfig(format="%(levelname)s - %(name)s -  %(message)s", level=logg
 logging.getLogger("haystack").setLevel(logging.INFO)
 print("Logging done")
 
-all_docs = convert_files_to_docs(dir_path="/data/")
+converter = PDFToTextConverter(remove_numeric_tables=True, multiprocessing=False)
+all_docs = converter.convert(file_path="data/DatabricksAcademyCourseCatalog.pdf")
 
 preprocessor = PreProcessor(
     clean_empty_lines=True,
