@@ -1,6 +1,8 @@
 import logging
 from haystack.utils import convert_files_to_docs
 from haystack.nodes import PreProcessor
+from haystack.document_stores import WeaviateDocumentStore
+
 print("Imports done")
 
 logging.basicConfig(format="%(levelname)s - %(name)s -  %(message)s", level=logging.WARNING)
@@ -19,3 +21,6 @@ preprocessor = PreProcessor(
 )
 
 pre_processed_docs = preprocessor.process(all_docs)
+print(pre_processed_docs)
+print("Preprocessing done")
+
