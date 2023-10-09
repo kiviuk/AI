@@ -1,5 +1,6 @@
 import logging
-from haystack.nodes import PreProcessor, PDFToTextConverter
+from haystack.nodes import PreProcessor, PDFToTextConverter, EmbeddingRetriever
+from haystack.document_stores import WeaviateDocumentStore
 
 print("Imports done")
 
@@ -23,3 +24,17 @@ pre_processed_docs = preprocessor.process(all_docs)
 print(pre_processed_docs)
 print("Preprocessing done")
 
+document_store = WeaviateDocumentStore(host='http://localhost',
+                                       port=8080,
+                                       embedding_dim=384)
+print("Document store done")
+
+document_store.write_documents(pre_processed_docs)
+
+retriever = EmbeddingRetriever(document_store=document_store, embedding_model="sentence-transformers/all-MiniLM-L6-v2")
+
+print("Retriever: ", retriever)
+
+document_store.update_embeddings(retriever)
+
+print("Embeddings Done.")
