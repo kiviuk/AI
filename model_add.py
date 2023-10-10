@@ -1,5 +1,4 @@
 from haystack.nodes import PromptModelInvocationLayer
-from haystack.nodes.prompt.invocation_layer import DefaultTokenStreamingHandler
 from llama_cpp import Llama
 import os
 from typing import Dict, List, Union, Type, Optional
